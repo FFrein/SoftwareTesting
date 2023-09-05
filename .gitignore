@@ -1,0 +1,8 @@
+# ignore all logs
+*.log
+# ignore all db
+*.db
+# ignore folder target
+/target
+# ignore folder bin
+/bin
