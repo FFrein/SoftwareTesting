@@ -1,0 +1,12 @@
+git remote -v
+git remote remove <имя-удаленного-репозитория>
+
+Для получения изменений с удаленного репозитория:
+git pull origin <имя-вашей-ветки>
+
+Для отправки изменений на удаленный репозиторий:
+git push origin <имя-вашей-ветки>
+
+git remote add origin <URL-нового-репозитория>
+
+git remote add origin https://github.com/ваш-пользователь/ваш-новый-репозиторий.git
