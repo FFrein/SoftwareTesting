@@ -1,0 +1,13 @@
+mvn archetype:generate - шаблон для создагния проекта(архитип проекта)
+
+mvn archetype:generate
+	-DarchetypeGroupId=org.apache.maven.archetypes
+	-DarchetypeArtifactId=mamven-archetype-quickstart
+	-DarchetypeVersion=1.3
+
+Most used 
+	clean
+	test
+	package
+	install
+	deploy

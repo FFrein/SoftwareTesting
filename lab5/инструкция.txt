@@ -1,0 +1,15 @@
+скачать Jenkins 
+https://www.jenkins.io/download/
+
+скачать jdk
+https://www.techspot.com/downloads/downloadnow/5553/?evp=cc1002b8f24231deaf82043061a06561&file=6310
+
+https://www.youtube.com/watch?v=45_9Xk2dBqg&t=149s&ab_channel=VitaliShulha
+
+Инфа по jenkins
+
+Билд тригеры
+	On-demand run
+	Other job finish
+	Cron schedule  (Выполнение по определённому времени(запланированные))
+	SCM check
