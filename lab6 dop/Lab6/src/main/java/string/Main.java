@@ -6,7 +6,10 @@ import java.util.Comparator;
 public class Main {
 
     public static void main(String[] args) {
-        String text = "Это пример текста. В этом тексте есть несколько предложений. Эти предложения содержат общие слова. Слово 'этот' встречается в нескольких предложениях.  ";
+        String text = "This is an example text. " +
+                "There are several sentences in this text. " +
+                "These sentences contain common words. " +
+                "The word 'this' appears in several sentences.";
 
         System.out.println("Task2");
         Task2(text);
@@ -30,7 +33,7 @@ public class Main {
 
         Arrays.sort(sentences, Comparator.comparingInt(sentence -> sentence.split("\\s+").length));
 
-        System.out.println("Предложения в порядке возрастания количества слов:");
+        System.out.println("Sentences in ascending order of word count:");
         for (String sentence : sentences) {
             System.out.println(sentence);
         }
@@ -57,13 +60,13 @@ public class Main {
                 }
             }
             if (isUnique) {
-                System.out.println("Уникальное слово в первом предложении: " + word);
+                System.out.println("Unique word in the first sentence:" + word);
                 foundUniqueWord = true;
                 break;
             }
         }
         if (!foundUniqueWord) {
-            System.out.println("В первом предложении нет уникальных слов.");
+            System.out.println("There are no unique words in the first sentence.");
         }
     }
 
@@ -84,7 +87,7 @@ public class Main {
         }
         String result = String.join(". ", sentences);
 
-        System.out.println("Измененный текст:");
+        System.out.println("Changed text:");
         System.out.println(result);
     }
 
@@ -107,7 +110,7 @@ public class Main {
     }
 
     static void Task12(String text, int count) {
-        String consonants = "бвгджзйклмнпрстфхцчшщ";
+        String consonants = "bvgjziklmnprstfhcchshsch";
         String[] sentences = text.split("\\. ");
 
         for (int i = 0; i < sentences.length; i++) {
@@ -125,7 +128,7 @@ public class Main {
         }
 
         String result = String.join(". ", sentences);
-        System.out.println("Измененный текст:");
+        System.out.println("Changed text:");
         System.out.println(result);
     }
 }

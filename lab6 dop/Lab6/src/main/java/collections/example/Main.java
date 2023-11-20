@@ -31,15 +31,15 @@ public class Main {
                 findVegetable.add(a);
             }
         }
-        System.out.println("Каллорийность салата: " + sumCal + " каллорий");
-        System.out.println("Овощи с " + currentCal + " каллорием: ");
+        System.out.println("calorie content of salad: " + sumCal + " calorie");
+        System.out.println("Vegetables with " + currentCal + " calorie: ");
 
         for (var a: findVegetable
              ) {
             System.out.println(a.name);
         }
 
-        System.out.println("Сортировка по количеству продуктов:");
+        System.out.println("Sorting by number of products:");
 
         Collections.sort(mySalad);
         mySalad.forEach(sal -> {

@@ -5,9 +5,9 @@ import java.util.Scanner;
 public class GreetingUser {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Введите ваше имя: ");
+        System.out.print("Enter your name: ");
         String name = scanner.nextLine();
-        System.out.println("Привет, " + name + "!");
+        System.out.println("Hello, " + name + "!");
         scanner.close();
     }
 }

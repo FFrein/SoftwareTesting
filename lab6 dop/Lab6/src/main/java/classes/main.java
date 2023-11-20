@@ -6,8 +6,8 @@ import java.util.Scanner;
 public class main {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
-        System.out.println("Выюерите пункт: \n 1 - Student \n 2 - Customer \n 3 - Patient \n" +
-                " 4 - Abiturient \n 5 - Book \n 6 - Book \n 7 - Phone \n 8 - Car \n 9 - Product \n 10 - Train \n 0 - Выход");
+        System.out.println("SELECT: \n 1 - Student \n 2 - Customer \n 3 - Patient \n" +
+                " 4 - Abiturient \n 5 - Book \n 6 - Book \n 7 - Phone \n 8 - Car \n 9 - Product \n 10 - Train \n 0 - EXIT");
         int num = in.nextInt();
         while (true)
         {

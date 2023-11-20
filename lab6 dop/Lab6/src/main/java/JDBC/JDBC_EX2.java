@@ -6,31 +6,32 @@ import java.util.List;
 import java.util.Scanner;
 
 public class JDBC_EX2 {
+
     public static void main(String[] args) throws ClassNotFoundException {
-        Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-        String url = "jdbc:sqlserver://DIMADD;databaseName=rus_bel;trustServerCertificate=true;encrypt=false;IntegratedSecurity=false";
-        String username = "sa";
+        Class.forName("org.postgresql.Driver");
+        String url = "jdbc:postgresql://localhost:5432/TestDB1410";
+        String username = "postgres";
         String password = "1111";
 
         try (Connection connection = DriverManager.getConnection(url, username, password)) {
-            System.out.println("Connected to the database");
+            System.out.println("Connected");
             Scanner scanner = new Scanner(System.in);
 
             while (true) {
-                System.out.println("Enter word (or type 'exit' to quit):");
+                System.out.println("Enter a word (or type 'exit' to exit):");
                 String word = scanner.nextLine();
                 if ("exit".equalsIgnoreCase(word)) {
                     break;
                 }
 
-                System.out.println("Enter language (ru, by):");
+                System.out.println("Enter the language (ru, by):");
                 String language = scanner.nextLine();
 
                 List<String> translations = findWord(connection, word, language);
                 if (translations.isEmpty()) {
-                    System.out.println("No translations found in the dictionary");
+                    System.out.println("Translations were not found in the dictionary");
                 } else {
-                    System.out.println("Translations:");
+                    System.out.println("Translate:");
                     for (String translation : translations) {
                         System.out.println(translation);
                     }
@@ -40,7 +41,6 @@ public class JDBC_EX2 {
             throw new RuntimeException(e);
         }
     }
-
     public static List<String> findWord(Connection connection, String word, String language) throws SQLException {
         List<String> translations = new ArrayList<>();
 

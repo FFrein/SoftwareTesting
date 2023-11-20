@@ -19,16 +19,16 @@ public class JDBC_EX1
 //    консоль все русские (английские) значения слова.
     public static void main( String[] args ) throws ClassNotFoundException, SQLException  {
         try {
-            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            String url = "jdbc:sqlserver://DIMADD;databaseName=DictionaryDatabase;trustServerCertificate=true;encrypt=false;IntegratedSecurity=false";
-            Connection connection = DriverManager.getConnection(url, "sa", "1111");
-            System.out.println("We're connected");
+            Class.forName("org.postgresql.Driver");
+            String url = "jdbc:postgresql://localhost:5432/TestDB1410";
+            Connection connection = DriverManager.getConnection(url, "postgres", "1111");
+            System.out.println("Connected");
             do {
-                System.out.println("Enter word:");
+                System.out.println("Input world:");
                 String word = new java.util.Scanner(System.in).nextLine();
                 List<String> list = findWord(connection, word);
                 if (list.size() == 0) {
-                    System.out.println("No such word in dictionary");
+                    System.out.println("There is no such word in the dictionary");
                 } else {
                     System.out.println("Translate:");
                     for (String s : list) {
@@ -37,10 +37,11 @@ public class JDBC_EX1
                 }
             } while (true);
         } catch (SQLException e) {
-            System.out.println("Something went wrong");
+            System.out.println("SQL error");
             e.printStackTrace();
         }
     }
+
 
     public static List<String> findWord(Connection connection, String word) throws SQLException {
         Statement statement = connection.createStatement();
