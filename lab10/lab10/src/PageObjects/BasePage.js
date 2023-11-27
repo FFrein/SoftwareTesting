@@ -9,16 +9,19 @@ class BasePage{
         global.driver = driver;
     }
     async go_to_url(theURL){
-        await driver.get(theURL);
+        return await driver.get(theURL);
+    }
+    async findTextByXPath(path){
+        return await driver.findElement(By.xpath(path));
     }
     async enterTextByCss(css, searchText){
-        await driver.findElement(By.css(css)).sendKeys(searchText);
+        return await driver.findElement(By.css(css)).sendKeys(searchText);
     }
     async clickById(id){
-        await driver.findElement(By.id(id)).click();
+        return await driver.findElement(By.id(id)).click();
     }
     async closeBrowser(){
-        await driver.quit();
+        return await driver.quit();
     }
 }
 
