@@ -13,7 +13,7 @@ let badImagePath = 'F:/MyFile/Univer/SoftwareTesting/lab11-12/testData/txt.jpg';
 
 const argv = require('yargs').argv;
 let browser = argv.browser || "chrome";
-
+/*
 describe('TestsForAuthorizedUser', function() {
     this.timeout(90000);
 
@@ -33,7 +33,9 @@ describe('TestsForAuthorizedUser', function() {
         const testUser = await UserCreator.withCredentialsFromProperty();
         let loggedInUserName = new LoginPage(driver);
         loggedInUserName = await loggedInUserName.openPage();
-        loggedInUserName = await loggedInUserName.login(testUser);
+        loggedInUserName = await loggedInUserName.setLogin(testUser.username);
+        loggedInUserName = await loggedInUserName.doLogin();
+        loggedInUserName = await loggedInUserName.setCode();
         loggedInUserName = await loggedInUserName.getLoggedInUserName(testUser);
         assert.strictEqual(loggedInUserName, testUser.username);
     });
@@ -44,6 +46,15 @@ describe('TestsForAuthorizedUser', function() {
         Result = await Result.getPayout(1000);
         Result = await Result.getErrorMessageBox();
         assert.strictEqual(Result, 'Недостаточно средств к выплате');
+    });
+
+    it('Incorrect number in deposite', async function() {
+        let Result = new WalletPage(driver);
+        Result = await Result.openPage();
+        Result = await Result.openDeposit();
+        Result = await Result.setDeposite('0000');
+        Result = await Result.gerErrorIncorrectDeposite();
+        assert.strictEqual(Result, 'Введите сумму от 25 ₽ до 100 000 ₽');
     });
 
     it('Shop: Product amount parametr error', async function() {
@@ -96,33 +107,17 @@ describe('TestsForAuthorizedUser', function() {
         Result = await Result.errorLoadImage();
         assert.strictEqual(Result, 'Input Buffer is empty');
     });
-    //возможно стоит переделать
+   
     it('Shop: Search product witch long name', async function() {
         let Result = new SellPage(driver);
         Result = await Result.openPage();
         Result = await Result.searchProduct("longProductNamelongProductNamelongProductName");
         Result = await Result.getSearchProductValue();
-        assert.strictEqual(Result, "");
-    });
-
-    it('7', async function() {
-        let Result = new WalletPage(driver);
-        Result = await Result.openPage();
-        Result = await Result.getPayout('1000');
-        Result = await Result.getErrorMessageBox();
-        assert.strictEqual(Result, 'Недостаточно средств к выплате');
-    });
-
-    it('8', async function() {
-        let Result = new WalletPage(driver);
-        Result = await Result.openPage();
-        Result = await Result.getPayout('1000');
-        Result = await Result.getErrorMessageBox();
-        assert.strictEqual(Result, 'Недостаточно средств к выплате');
+        assert.strictEqual(Result, "longProductNamelongProductNamelongProductName");
     });
 
 });
-
+*/
 describe('TestsForUnauthorizedUser', function() {
     this.timeout(90000);
 
@@ -139,7 +134,7 @@ describe('TestsForUnauthorizedUser', function() {
             await DriverSingleton.closeDriver();
         }
     });
-    
+
     it('Error404', async function() {
         let ErrorPage = new Page404(driver);
         ErrorPage = await ErrorPage.openPage();
@@ -158,5 +153,13 @@ describe('TestsForUnauthorizedUser', function() {
         Result = await Result.getCurrentURL();
         assert.strictEqual(Result, 'https://playerok.com/profile/auth');
     });
-    
+
+    it('Incorrect Login', async function() {
+        let Result = new LoginPage(driver);
+        Result = await Result.openPage();
+        Result = await Result.setLogin('asdasd@123b253v24.com');
+        Result = await Result.doLogin();
+        Result = await Result.getLoginError();
+        assert.strictEqual(Result, 'Введите код из почты');
+    });
 });

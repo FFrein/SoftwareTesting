@@ -1,4 +1,4 @@
-const { By, until } = require('selenium-webdriver');
+const { By, until, Key} = require('selenium-webdriver');
 const AbstractPage = require('./AbstractPage');
 
 class WalletPage extends AbstractPage {
@@ -26,6 +26,28 @@ class WalletPage extends AbstractPage {
         return this;
     }
 
+    async openDeposit(){
+        await this.driver.findElement(By.xpath("//span[contains(text(), 'Пополнение')]")).click();
+        await this.driver.sleep(1000);
+        return this;
+    }
+
+    async setDeposite(number){
+        let inputElement = await this.driver.findElement(By.name('value'));
+        await inputElement.sendKeys(Number(number));
+        await inputElement.sendKeys(Key.TAB);
+        await this.driver.sleep(1000);
+        return this;
+    }
+
+    async doDeposite(){
+        await this.driver.findElement(By.xpath("//button[contains(text(), 'Пополнить баланс')]")).click();
+        return this;
+    }
+
+    async gerErrorIncorrectDeposite(){
+        return await this.driver.findElement(By.xpath("//p[contains(text(), 'Введите сумму от 25 ₽ до 100 000 ₽')]")).getText();
+    }
 
     async getErrorMessageBox(){
         return await this.driver.findElement(By.xpath("//div[contains(text(), 'Недостаточно средств к выплате')]")).getText();

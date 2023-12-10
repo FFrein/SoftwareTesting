@@ -16,12 +16,22 @@ class LoginPage extends AbstractPage {
         return this;
     }
 
-    async login(user) {
-        console.log('login: ',user.username, 'pass: ',user.password)
-        await this.driver.findElement(By.name('email')).sendKeys(user.username);
-        await this.driver.findElement(By.xpath("//button[contains(text(), 'Получить код')]")).click();
-        await this.driver.sleep(7000); // Задержка в 7 секунду
+    async getLoginError(){
+        return await this.driver.findElement(By.xpath("//span[contains(text(), 'Введите код из почты')]")).getText();
+    }
 
+    async setLogin(user){
+        await this.driver.findElement(By.name('email')).sendKeys(user);
+        return this;
+    }
+
+    async doLogin(){
+        await this.driver.findElement(By.xpath("//button[contains(text(), 'Получить код')]")).click();
+        await this.driver.sleep(7000);
+        return this;
+    }
+
+    async setCode() {
         const reader = new RamblerReader();
         await reader.fetchEmails();
         let code = await reader.printConfirmationCode();

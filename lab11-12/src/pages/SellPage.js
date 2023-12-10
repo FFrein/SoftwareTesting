@@ -63,7 +63,7 @@ class SellPage extends AbstractPage {
     }
 
     async getSearchProductValue(name){
-        return this.driver.findElement(By.name('search')).getText();;
+        return await this.driver.findElement(By.name('search')).getAttribute('value');
     }
 
     async clickSellLater(){
