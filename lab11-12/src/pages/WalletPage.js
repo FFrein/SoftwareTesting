@@ -4,7 +4,7 @@ const AbstractPage = require('./AbstractPage');
 class WalletPage extends AbstractPage {
     constructor(driver) {
         super(driver);
-        this.BASE_URL = 'https://playerok.com/wallet/add';
+        this.BASE_URL = 'https://playerok.com/wallet/withdraw';
     }
 
     async openPage() {
@@ -14,13 +14,18 @@ class WalletPage extends AbstractPage {
     }
 
     async getPayout(number) {
-        await this.driver.findElement(By.xpath("//div//span[contains(text(), 'Выплата')]")).click();
-        await this.driver.findElement(By.name('value')).sendKeys(number);
+        await this.driver.findElement(By.name('value')).sendKeys(Number(number));
         await this.driver.findElement(By.xpath("//button[contains(text(), 'Создать выплату')]")).click();
         await this.driver.findElement(By.name('account')).sendKeys(number);
         await this.driver.findElement(By.xpath("//button[contains(text(), 'Выплатить')]")).click();
         return this;
     }
+
+    async openHistoryData(){
+        await this.driver.findElement(By.xpath("//button[contains(., 'Дата')]")).click();
+        return this;
+    }
+
 
     async getErrorMessageBox(){
         return await this.driver.findElement(By.xpath("//div[contains(text(), 'Недостаточно средств к выплате')]")).getText();
